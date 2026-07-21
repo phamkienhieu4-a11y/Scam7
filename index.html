@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>G PERYA - COLOR DICE</title>
+    <style>
+        body {
+            background-color: #3b638f;
+            /* Dùng mẫu ảnh nền hoa văn đồng hồ cát chính xác từ ảnh bạn gửi */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.22)' stroke-width='1.5' stroke-linejoin='round'%3E%3C!-- Đồng hồ cát chuẩn --%3E%3Cpath d='M40 20 L70 20 L55 35 L70 50 L40 50 L55 35 Z' fill='rgba(255,255,255,0.02)'/%3E%3Cpath d='M140 120 L170 120 L155 135 L170 150 L140 150 L155 135 Z' fill='rgba(255,255,255,0.02)'/%3E%3Cpath d='M140 20 L170 20 L155 35 L170 50 L140 50 L155 35 Z' fill='rgba(255,255,255,0.02)'/%3E%3Cpath d='M40 120 L70 120 L55 135 L70 150 L40 150 L55 135 Z' fill='rgba(255,255,255,0.02)'/%3E%3C!-- Lá bài nghiêng --%3E%3Crect x='100' y='60' width='22' height='30' rx='4' fill='rgba(255,255,255,0.04)' transform='rotate(20 111 75)'/%3E%3Ccircle cx='111' cy='75' r='2' fill='rgba(255,255,255,0.3)' stroke='none'/%3E%3Crect x='10' y='160' width='22' height='30' rx='4' fill='rgba(255,255,255,0.04)' transform='rotate(20 21 175)'/%3E%3Ccircle cx='21' cy='175' r='2' fill='rgba(255,255,255,0.3)' stroke='none'/%3E%3Crect x='100' y='-40' width='22' height='30' rx='4' fill='rgba(255,255,255,0.04)' transform='rotate(20 111 -25)'/%3E%3Ccircle cx='111' cy='-25' r='2' fill='rgba(255,255,255,0.3)' stroke='none'/%3E%3C!-- Các khối hình học phụ --%3E%3Crect x='15' y='60' width='18' height='24' rx='3' fill='rgba(255,255,255,0.03)' transform='rotate(-25 24 72)'/%3E%3Crect x='115' y='160' width='18' height='24' rx='3' fill='rgba(255,255,255,0.03)' transform='rotate(-25 124 172)'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 180px 180px;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="width: 100%; max-width: 260px; background: rgba(22, 32, 48, 0.75); backdrop-filter: blur(8px); border: 2.5px solid rgba(255, 255, 255, 0.65); border-radius: 16px; padding: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.15); color: white; box-sizing: border-box; position: relative;">
+
+        <div style="text-align: center; margin-bottom: 8px;">
+            <div style="font-size: 14px; font-weight: 900; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); text-transform: uppercase; letter-spacing: 0.5px;">G PERYA</div>
+            <div style="font-size: 6.5px; font-weight: bold; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px;">COLOR GAME & LIGHT OR DARK</div>
+        </div>
+
+        <div style="display: flex; gap: 5px; margin-bottom: 12px;">
+            <div style="flex: 1; background: #ffffff; color: #000; border-radius: 5px; padding: 4px 6px; font-size: 8.5px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><span>4 DICE</span><span style="font-size: 7px; color: #64748b;">▼</span></div>
+            <div style="flex: 1; background: #ffffff; color: #000; border-radius: 5px; padding: 4px 6px; font-size: 8.5px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><span>COLOR DICE</span><span style="font-size: 7px; color: #64748b;">▼</span></div>
+        </div>
+
+        <!-- MÀN HÌNH NGƯỜI THƯỜNG -->
+        <div id="screen-user">
+            <div style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 5px !important; margin: 12px 0 !important; width: 100% !important;" id="dice-container">
+                <div style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #ffffff !important; border: 2.5px solid #ffffff !important; border-radius: 9px !important; padding: 2px !important; box-sizing: border-box !important; box-shadow: 0 5px 12px rgba(0,0,0,0.35) !important;">
+                    <div class="dice-inner" style="width: 100% !important; height: 100% !important; background-color: #334155 !important; border-radius: 5px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 5px; height: 5px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #ffffff !important; border: 2.5px solid #ffffff !important; border-radius: 9px !important; padding: 2px !important; box-sizing: border-box !important; box-shadow: 0 5px 12px rgba(0,0,0,0.35) !important;">
+                    <div class="dice-inner" style="width: 100% !important; height: 100% !important; background-color: #334155 !important; border-radius: 5px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 5px; height: 5px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #ffffff !important; border: 2.5px solid #ffffff !important; border-radius: 9px !important; padding: 2px !important; box-sizing: border-box !important; box-shadow: 0 5px 12px rgba(0,0,0,0.35) !important;">
+                    <div class="dice-inner" style="width: 100% !important; height: 100% !important; background-color: #334155 !important; border-radius: 5px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 5px; height: 5px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #ffffff !important; border: 2.5px solid #ffffff !important; border-radius: 9px !important; padding: 2px !important; box-sizing: border-box !important; box-shadow: 0 5px 12px rgba(0,0,0,0.35) !important;">
+                    <div class="dice-inner" style="width: 100% !important; height: 100% !important; background-color: #334155 !important; border-radius: 5px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 5px; height: 5px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="rollDice()" style="width: 100%; background: linear-gradient(to bottom, #38bdf8, #0284c7); color: white; border: 2px solid #bae6fd; border-radius: 8px; padding: 9px; font-size: 11.5px; font-weight: 900; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.4); text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+                ROLL AGAIN !
+            </button>
+
+            <div style="margin-top: 10px; padding: 5px 6px; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; text-align: center;">
+                <div style="font-size: 7.5px; color: #cbd5e1; font-weight: bold; line-height: 1.4;">
+                    Possible colors are: 
+                    <span style="color: #ef4444; font-weight: 900;">Red</span>, 
+                    <span style="color: #f97316; font-weight: 900;">Orange</span>, 
+                    <span style="color: #eab308; font-weight: 900;">Yellow</span>, 
+                    <span style="color: #22c55e; font-weight: 900;">Green</span>, 
+                    <span style="color: #3b82f6; font-weight: 900;">Blue</span>, and 
+                    <span style="color: #a855f7; font-weight: 900;">Purple</span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH ADMIN -->
+        <div id="screen-admin" style="display: none;">
+            <p style="text-align: center; font-size: 8px; color: #cbd5e0; margin-bottom: 6px;">Bấm ô để chọn nhanh màu trong 6 màu:</p>
+            
+            <div style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 5px !important; margin: 10px 0 !important; width: 100% !important;">
+                <div onclick="openColorPicker(0)" style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #fff !important; border: 2px solid #cbd5e1 !important; border-radius: 6px !important; padding: 2px !important; cursor: pointer !important;">
+                    <div id="as-0" style="width: 100% !important; height: 100% !important; background-color: #ef4444 !important; border-radius: 4px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 4px; height: 4px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div onclick="openColorPicker(1)" style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #fff !important; border: 2px solid #cbd5e1 !important; border-radius: 6px !important; padding: 2px !important; cursor: pointer !important;">
+                    <div id="as-1" style="width: 100% !important; height: 100% !important; background-color: #ef4444 !important; border-radius: 4px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 4px; height: 4px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div onclick="openColorPicker(2)" style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #fff !important; border: 2px solid #cbd5e1 !important; border-radius: 6px !important; padding: 2px !important; cursor: pointer !important;">
+                    <div id="as-2" style="width: 100% !important; height: 100% !important; background-color: #ef4444 !important; border-radius: 4px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 4px; height: 4px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <div onclick="openColorPicker(3)" style="flex: 1 1 0% !important; min-width: 0 !important; aspect-ratio: 1/1 !important; background: #fff !important; border: 2px solid #cbd5e1 !important; border-radius: 6px !important; padding: 2px !important; cursor: pointer !important;">
+                    <div id="as-3" style="width: 100% !important; height: 100% !important; background-color: #ef4444 !important; border-radius: 4px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <div style="width: 4px; height: 4px; background: #fff; border-radius: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="color-picker-modal" style="display: none; background: #0d1117; border: 1px solid #3b82f6; border-radius: 6px; padding: 6px; margin: 6px 0; text-align: center;">
+                <div style="font-size: 8px; color: #93c5fd; margin-bottom: 4px; font-weight: bold;">Chọn 1 màu cho Ô <span id="picker-target-num">1</span>:</div>
+                <div id="picker-dots" style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap;"></div>
+            </div>
+
+            <div id="admin-status" style="font-size: 8px; text-align: center; padding: 5px; border-radius: 4px; background: #2d3748; color: #cbd5e0; margin-top: 6px;">Đang kết nối Cloud...</div>
+
+            <button id="btn-save" onclick="saveGaiOnline()" style="width: 100%; background: #2563eb; color: white; border: none; border-radius: 5px; padding: 6px; font-size: 10px; font-weight: bold; margin-top: 6px; cursor: pointer;">LƯU VÀ CÀI MÀU ONLINE</button>
+            <button onclick="clearGaiOnline()" style="width: 100%; background: #d97706; color: white; border: none; border-radius: 5px; padding: 6px; font-size: 10px; font-weight: bold; margin-top: 4px; cursor: pointer;">XÓA MÀU CÀI ONLINE</button>
+            <button onclick="exitAdmin()" style="width: 100%; background: #475569; color: white; border: none; border-radius: 5px; padding: 6px; font-size: 10px; font-weight: bold; margin-top: 4px; cursor: pointer;">THOÁT ADMIN</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 8px; color: #cbd5e1;">
+            <button onclick="toggleAdminModal()" style="background: none; border: none; color: #cbd5e1; font-size: 8px; cursor: pointer; padding: 0;">⚙️ Admin</button>
+            <span>v11.4 (Real Background)</span>
+        </div>
+
+        <div id="admin-modal" style="display: none; background: #1a202c; border: 1px solid #2d3748; border-radius: 6px; padding: 8px; margin-top: 8px;">
+            <input id="pwd-input" type="password" placeholder="Nhập mật khẩu..." style="width: 100%; padding: 5px; border-radius: 4px; border: 1px solid #4a5568; background: #0d1117; color: white; text-align: center; font-size: 9px; margin-bottom: 6px; box-sizing: border-box;">
+            <button onclick="checkPwd()" style="width: 100%; background: #ef4444; color: white; border: none; padding: 5px; border-radius: 4px; font-weight: bold; font-size: 9px; cursor: pointer;">VÀO CÀI MÀU</button>
+        </div>
+    </div>
+
+    <script>
+        const JSONBIN_BIN_ID = '6a5e2ebeda38895dfe76767d';
+        const JSONBIN_API_KEY = '$2a$10$.WJvECrJkQSRWR/XNQ9rvul0ffJQpXvwtCu/88pF8gc.jNaoEUOca';
+
+        const COLORS = [
+            { id: 'red', name: 'Red', hex: '#ef4444' },
+            { id: 'orange', name: 'Orange', hex: '#f97316' },
+            { id: 'yellow', name: 'Yellow', hex: '#eab308' },
+            { id: 'green', name: 'Green', hex: '#22c55e' },
+            { id: 'blue', name: 'Blue', hex: '#3b82f6' },
+            { id: 'purple', name: 'Purple', hex: '#a855f7' }
+        ];
+
+        let slots = ['red', 'red', 'red', 'red'];
+        let activeSlotIdx = null;
+
+        function toggleAdminModal() {
+            const m = document.getElementById('admin-modal');
+            m.style.display = (m.style.display === 'none' || m.style.display === '') ? 'block' : 'none';
+        }
+
+        function checkPwd() {
+            if (document.getElementById('pwd-input').value === '30072011') {
+                document.getElementById('pwd-input').value = '';
+                document.getElementById('admin-modal').style.display = 'none';
+                document.getElementById('screen-user').style.display = 'none';
+                document.getElementById('screen-admin').style.display = 'block';
+                loadGaiFromCloud();
+            } else {
+                alert('Mật khẩu sai!');
+            }
+        }
+
+        function exitAdmin() {
+            document.getElementById('color-picker-modal').style.display = 'none';
+            document.getElementById('screen-admin').style.display = 'none';
+            document.getElementById('screen-user').style.display = 'block';
+        }
+
+        function openColorPicker(idx) {
+            activeSlotIdx = idx;
+            document.getElementById('picker-target-num').innerText = idx + 1;
+            const container = document.getElementById('picker-dots');
+            container.innerHTML = '';
+
+            COLORS.forEach(c => {
+                const btn = document.createElement('div');
+                btn.style.cssText = `width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #fff; background-color: ${c.hex}; cursor: pointer;`;
+                btn.onclick = function() {
+                    selectColorForSlot(c.id);
+                };
+                container.appendChild(btn);
+            });
+
+            document.getElementById('color-picker-modal').style.display = 'block';
+        }
+
+        function selectColorForSlot(colorId) {
+            if (activeSlotIdx !== null) {
+                slots[activeSlotIdx] = colorId;
+                renderAdminSlots();
+                document.getElementById('color-picker-modal').style.display = 'none';
+            }
+        }
+
+        function renderAdminSlots() {
+            slots.forEach((id, i) => {
+                let c = COLORS.find(x => x.id === id);
+                if (c) {
+                    document.getElementById(`as-${i}`).style.backgroundColor = c.hex;
+                }
+            });
+        }
+
+        async function loadGaiFromCloud() {
+            try {
+                let res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': JSONBIN_API_KEY }
+                });
+                let data = await res.json();
+                if (data.record && data.record.gai_mau) {
+                    slots = data.record.gai_mau;
+                    renderAdminSlots();
+                    updateAdminStatus(true);
+                } else {
+                    updateAdminStatus(false);
+                }
+            } catch (e) {
+                updateAdminStatus(false);
+            }
+        }
+
+        async function saveGaiOnline() {
+            document.getElementById('btn-save').innerText = "ĐANG LƯU ONLINE...";
+            try {
+                let res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY
+                    },
+                    body: JSON.stringify({ gai_mau: slots })
+                });
+                if(res.ok) {
+                    alert('Đã gài màu Online thành công cho tất cả các máy!');
+                    updateAdminStatus(true);
+                    exitAdmin();
+                } else {
+                    alert('Lưu thất bại!');
+                }
+            } catch (e) {
+                alert('Lỗi kết nối mạng!');
+            }
+            document.getElementById('btn-save').innerText = "LƯU VÀ CÀI MÀU ONLINE";
+        }
+
+        async function clearGaiOnline() {
+            try {
+                await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY
+                    },
+                    body: JSON.stringify({ gai_mau: null })
+                });
+                slots = ['red', 'red', 'red', 'red'];
+                renderAdminSlots();
+                alert('Đã xóa màu gài Online! Các máy sẽ quay ngẫu nhiên.');
+                updateAdminStatus(false);
+            } catch (e) {
+                alert('Lỗi kết nối!');
+            }
+        }
+
+        function updateAdminStatus(isActive) {
+            const statusEl = document.getElementById('admin-status');
+            if (isActive) {
+                statusEl.style.background = '#064e3b';
+                statusEl.style.color = '#34d399';
+                statusEl.innerText = "Đã gài màu Online! Máy khác bấm sẽ ra màu này.";
+            } else {
+                statusEl.style.background = '#2d3748';
+                statusEl.style.color = '#cbd5e0';
+                statusEl.innerText = "Chưa gài màu. Lượt quay sẽ NGẪU NHIÊN.";
+            }
+        }
+
+        async function rollDice() {
+            const container = document.getElementById('dice-container');
+            const innerBoxes = container.querySelectorAll('.dice-inner');
+            
+            let finalColors = [];
+
+            try {
+                let res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': JSONBIN_API_KEY }
+                });
+                let data = await res.json();
+
+                if (data.record && data.record.gai_mau) {
+                    const list = data.record.gai_mau;
+                    finalColors = list.map(id => COLORS.find(c => c.id === id) || COLORS[0]);
+                    clearGaiOnlineSilent();
+                } else {
+                    for (let i = 0; i < 4; i++) {
+                        finalColors.push(COLORS[Math.floor(Math.random() * COLORS.length)]);
+                    }
+                }
+            } catch (e) {
+                for (let i = 0; i < 4; i++) {
+                    finalColors.push(COLORS[Math.floor(Math.random() * COLORS.length)]);
+                }
+            }
+
+            finalColors.forEach((c, i) => {
+                innerBoxes[i].style.backgroundColor = c.hex;
+            });
+        }
+
+        function clearGaiOnlineSilent() {
+            fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': JSONBIN_API_KEY
+                },
+                body: JSON.stringify({ gai_mau: null })
+            });
+        }
+    </script>
+</body>
+</html>
